@@ -82,18 +82,19 @@ export default function Gallery({ photos }: GalleryProps) {
 
       {!showAll && filteredPhotos.length > 6 && (
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="mt-16 flex justify-center"
         >
           <button
             onClick={() => setShowAll(true)}
-            className="group relative px-8 py-3 bg-transparent border border-emerald-light/30 hover:border-emerald-light text-ivory font-sans text-sm tracking-widest uppercase transition-all duration-300"
+            className="group flex flex-col items-center gap-3 text-ivory/70 hover:text-ivory transition-colors duration-700"
           >
-            <span className="relative z-10 flex items-center gap-2">
-              Ver más fotos
+            <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.3em] font-light transition-transform duration-700 group-hover:-translate-y-1">
+              Descubrir Colección
             </span>
-            <div className="absolute inset-0 bg-emerald-light/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+            <span className="h-[1px] w-8 bg-emerald-light/30 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-20 group-hover:bg-emerald-light" />
           </button>
         </motion.div>
       )}
