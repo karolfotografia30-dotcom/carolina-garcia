@@ -143,7 +143,7 @@ export default function Footer() {
               reservados.
             </p>
             <p className="font-sans text-[11px] text-stone/40 flex items-center justify-center sm:justify-start gap-1">
-              Desarrollado con 💙 por{" "}
+              Diseño y desarrollo web por{" "}
               <a
                 href="https://www.facebook.com/share/1CMPzuVwik/"
                 target="_blank"
