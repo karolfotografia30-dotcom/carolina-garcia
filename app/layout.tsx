@@ -9,9 +9,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://carolina-photo-co.vercel.app"),
   title: "cg.photoy — Carolina García Fotografía | Bodas, XV Años, Marcas",
   description:
     "Fotógrafa profesional en Bogotá, Colombia. Especializada en cobertura de bodas, quinceañeras, fotografía de marca y books editoriales. Cotiza por WhatsApp.",
+  verification: {
+    google: "AQUÍ_PONES_EL_CÓDIGO_DE_VERIFICACIÓN_DE_GOOGLE",
+  },
   keywords: [
     "fotógrafa Bogotá",
     "fotografía de bodas Colombia",
