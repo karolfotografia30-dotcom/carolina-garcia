@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Facebook } from "lucide-react";
 
 // Instagram SVG icon (lucide-react doesn't include social brand icons)
 function InstagramIcon({ className }: { className?: string }) {
@@ -118,11 +119,26 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-xs text-stone/60">
-            © {currentYear} Carolina García — cg.photoy. Todos los derechos
-            reservados.
-          </p>
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-4">
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <p className="font-sans text-xs text-stone/60 text-center sm:text-left">
+              © {currentYear} Carolina García — cg.photoy. Todos los derechos
+              reservados.
+            </p>
+            <p className="font-sans text-[11px] text-stone/40 flex items-center justify-center sm:justify-start gap-1">
+              Desarrollado con 💙 por{" "}
+              <a
+                href="https://www.facebook.com/share/1CMPzuVwik/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar el Facebook de Cristian Lucas, desarrollador de esta página"
+                className="inline-flex items-center gap-1 hover:text-emerald-light hover:opacity-100 opacity-80 transition-all duration-300 font-medium"
+              >
+                Cristian Lucas
+                <Facebook className="h-3 w-3" />
+              </a>
+            </p>
+          </div>
           <p className="font-script italic text-stone/40 text-sm">
             Fotografía con alma
           </p>
