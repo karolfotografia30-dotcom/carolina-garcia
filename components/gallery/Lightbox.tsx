@@ -6,6 +6,11 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Photo } from "@/lib/types";
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
 interface LightboxProps {
   photo: Photo;
   onClose: () => void;
@@ -88,8 +93,19 @@ export default function Lightbox({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
           transition={{ duration: prefersReducedMotion ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative max-h-[85vh] max-w-[90vw] md:max-w-4xl"
+          className="relative max-h-[85vh] max-w-[90vw] md:max-w-4xl touch-pan-y"
           onClick={(e) => e.stopPropagation()}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.7}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
+            if (swipe < -swipeConfidenceThreshold && hasNext) {
+              onNext();
+            } else if (swipe > swipeConfidenceThreshold && hasPrev) {
+              onPrev();
+            }
+          }}
         >
           <Image
             src={photo.src}

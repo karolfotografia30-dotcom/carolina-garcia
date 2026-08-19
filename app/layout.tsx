@@ -55,6 +55,10 @@ export const metadata: Metadata = {
   },
 };
 
+import { Analytics } from "@vercel/analytics/react";
+import Preloader from "@/components/ui/Preloader";
+import ScrollToTop from "@/components/ui/ScrollToTop";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,7 +69,12 @@ export default function RootLayout({
       lang="es"
       className={`dark ${bodoni.variable} ${cormorant.variable} ${manrope.variable}`}
     >
-      <body className="bg-ink text-ivory font-sans antialiased overflow-x-hidden">{children}</body>
+      <body className="bg-ink text-ivory font-sans antialiased overflow-x-hidden">
+        <Preloader />
+        {children}
+        <ScrollToTop />
+        <Analytics />
+      </body>
     </html>
   );
 }
