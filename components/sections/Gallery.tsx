@@ -18,12 +18,15 @@ interface GalleryProps {
 export default function Gallery({ photos }: GalleryProps) {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("todos");
   const [lightboxPhoto, setLightboxPhoto] = useState<Photo | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const filteredPhotos =
     activeFilter === "todos"
       ? photos
       : photos.filter((p) => p.category === activeFilter);
+
+  const displayedPhotos = showAll ? filteredPhotos : filteredPhotos.slice(0, 6);
 
   const lightboxIndex = lightboxPhoto
     ? filteredPhotos.findIndex((p) => p.id === lightboxPhoto.id)
@@ -57,7 +60,13 @@ export default function Gallery({ photos }: GalleryProps) {
         />
       </motion.div>
 
-      <GalleryFilters active={activeFilter} onChange={setActiveFilter} />
+      <GalleryFilters 
+        active={activeFilter} 
+        onChange={(filter) => {
+          setActiveFilter(filter);
+          setShowAll(false);
+        }} 
+      />
 
       <motion.div
         key={activeFilter}
@@ -66,10 +75,28 @@ export default function Gallery({ photos }: GalleryProps) {
         transition={{ duration: 0.3 }}
       >
         <GalleryGrid
-          photos={filteredPhotos}
+          photos={displayedPhotos}
           onPhotoClick={(photo) => setLightboxPhoto(photo)}
         />
       </motion.div>
+
+      {!showAll && filteredPhotos.length > 6 && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-12 flex justify-center"
+        >
+          <button
+            onClick={() => setShowAll(true)}
+            className="group relative px-8 py-3 bg-transparent border border-emerald-light/30 hover:border-emerald-light text-ivory font-sans text-sm tracking-widest uppercase transition-all duration-300"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Ver más fotos
+            </span>
+            <div className="absolute inset-0 bg-emerald-light/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+          </button>
+        </motion.div>
+      )}
 
       {/* Lightbox */}
       <AnimatePresence>
