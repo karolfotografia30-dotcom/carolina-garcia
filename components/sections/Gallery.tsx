@@ -89,12 +89,12 @@ export default function Gallery({ photos }: GalleryProps) {
         >
           <button
             onClick={() => setShowAll(true)}
-            className="group flex flex-col items-center gap-3 text-ivory/70 hover:text-ivory transition-colors duration-700"
+            className="group flex flex-col items-center gap-3 text-ivory/70 lg:hover:text-ivory active:text-ivory transition-colors duration-700"
           >
-            <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.3em] font-light transition-transform duration-700 group-hover:-translate-y-1">
+            <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.3em] font-light transition-transform duration-700 lg:group-hover:-translate-y-1 group-active:-translate-y-1">
               Descubrir Colección
             </span>
-            <span className="h-[1px] w-8 bg-emerald-light/30 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-20 group-hover:bg-emerald-light" />
+            <span className="h-[1px] w-8 bg-emerald-light/30 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:group-hover:w-20 lg:group-hover:bg-emerald-light group-active:w-20 group-active:bg-emerald-light" />
           </button>
         </motion.div>
       )}
